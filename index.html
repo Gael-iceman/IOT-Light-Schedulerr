@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Light Control</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/4.3.7/mqtt.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        .button {
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        #onButton {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #offButton {
+            background-color: #f44336;
+            color: white;
+        }
+        #status {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>IoT Light Control</h1>
+    <div>
+        <button id="onButton" class="button">Turn ON</button>
+        <button id="offButton" class="button">Turn OFF</button>
+    </div>
+    <div id="status">Status: Not Connected</div>
+
+    <script>
+        const client = mqtt.connect('wss://broker.emqx.io:8084/mqtt');
+        const topic = '/student_group/light_control';
+        const statusDiv = document.getElementById('status');
+
+        client.on('connect', () => {
+            statusDiv.textContent = 'Status: Connected to MQTT broker';
+        });
+
+        document.getElementById('onButton').addEventListener('click', () => {
+            client.publish(topic, 'ON');
+            statusDiv.textContent = 'Status: Light turned ON';
+        });
+
+        document.getElementById('offButton').addEventListener('click', () => {
+            client.publish(topic, 'OFF');
+            statusDiv.textContent = 'Status: Light turned OFF';
+        });
+    </script>
+</body>
+</html> 
