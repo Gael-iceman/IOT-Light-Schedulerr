@@ -41,12 +41,12 @@ project/
     🚀 Installation & Setup
 Install MQTT Broker (Mosquitto)
 
-sudo apt install mosquitto mosquitto-clients
+    sudo apt install mosquitto mosquitto-clients
 
 
 Install Python Libraries
 
-pip install websockets paho-mqtt pyserial
+    pip install websockets paho-mqtt pyserial
 
 Upload Arduino Code
 
@@ -60,19 +60,19 @@ Ensure an RTC module (DS3231) is connected if using real time.
 
 Start MQTT Broker
 
-mosquitto
+    mosquitto
 
 
 
 Run WebSocket Server
 
-cd server
-python websocket_server.py
+    cd server
+    python websocket_server.py
 
 Run MQTT Subscriber
 
-cd subscriber
-python mqtt_subscriber.py
+    cd subscriber
+    python mqtt_subscriber.py
 
 Open the Frontend
 
